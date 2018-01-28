@@ -7,6 +7,7 @@ function makeGrid() {
     var grid = $('#grid');
     var height = Number($('#grid-height').val());
     gridArr = [];
+    tilesFound = 0;
     nonogram = false;
     if (height > 30) {
         height = 30;
@@ -68,8 +69,8 @@ function handlePixel(e){
         else {
         	tilesFound++;
             pixel.removeClass('tile');
-         	   if(tilesToEliminate === tilesFound) {
-        		alert('you win!');
+         	if(tilesToEliminate === tilesFound) {
+        		$('.pixel').removeClass('tile');
         	}
         }
     }
