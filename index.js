@@ -40,7 +40,7 @@ function makeGrid() {
         }
       }
     }
-    console.log(gridArr);
+    $('body').append('<button id="nonogramify"  onclick="nonogramify()">Create Nonogram</button>')
 }
 
 function handlePixel(e){
@@ -108,6 +108,7 @@ function nonogramify() {
         }
     }
     tilesToEliminate = countPixels(gridArr);
+    $('#nonogramify').remove();
 }
 
 
