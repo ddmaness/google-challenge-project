@@ -1,5 +1,7 @@
 var gridArr = [];
 var nonogram = false;
+var tilesToEliminate = 0;
+var tilesFound = 0;
 
 function makeGrid() {
     var grid = $('#grid');
@@ -64,16 +66,18 @@ function handlePixel(e){
             pixel.addClass('incorrect');
         }
         else {
+        	tilesFound++;
             pixel.removeClass('tile');
+         	   if(tilesToEliminate === tilesFound) {
+        		alert('you win!');
+        	}
         }
-
     }
 }
 
 function nonogramify() {
     nonogram = true;
     var tile = $('.pixel')
-    console.log(tile);
     var colVal = 0;
     var rowVal = 0;
     tile.addClass('tile')
@@ -103,4 +107,18 @@ function nonogramify() {
             }
         }
     }
+    tilesToEliminate = countPixels(gridArr);
+}
+
+
+function countPixels(grid) {
+	var total = 0;
+	grid.forEach(function(arrElem) {
+		arrElem.forEach(function(elem){
+			if (!elem) {
+				total++
+			}
+		});
+	});
+	return total;
 }
