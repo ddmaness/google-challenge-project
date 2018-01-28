@@ -4,6 +4,8 @@ var nonogram = false;
 function makeGrid() {
     var grid = $('#grid');
     var height = Number($('#grid-height').val());
+    gridArr = [];
+    nonogram = false;
     if (height > 30) {
         height = 30;
     }
