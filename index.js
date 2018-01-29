@@ -88,7 +88,8 @@ function handlePixel(e){
         	tilesFound++;
 			pixel.removeClass('tile');
          	if(tilesToEliminate === tilesFound) {
-				$('.pixel').removeClass('tile');
+                $('.pixel').removeClass('tile');
+                $('.pixel').removeClass('incorrect');   
 				$('#win').addClass('win-is-visible');
 			}
 		}
