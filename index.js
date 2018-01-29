@@ -1,14 +1,21 @@
+// Array of pixels
 var gridArr = [];
+
+// Has this been turned into a nonogram
 var nonogram = false;
+
+// How many tiles to eliminate before winning?
 var tilesToEliminate = 0;
+
+// How many tiles have been found?
 var tilesFound = 0;
 
+
+// Makes grid based on user settings
 function makeGrid() {
     var grid = $('#grid');
+	// Capture grid height and width and limit it to 1 to 30
     var height = Number($('#grid-height').val());
-    gridArr = [];
-    tilesFound = 0;
-    nonogram = false;
    	$('#win').removeClass('win-is-visible');
     if (height > 30) {
         height = 30;
@@ -23,7 +30,12 @@ function makeGrid() {
     if (width < 1) {
         width = 1;
     }
+    // Reset game variables
     grid.html('');
+    gridArr = [];
+    tilesFound = 0;
+    nonogram = false;
+    // Construct grid in dom and gridArr variable
     grid.prepend('<div id=\'y-numbers\'</div>')
     for (var x = 0; x < width + 1; x++){
         x == 0 ? $('#y-numbers').append('<div id=\'corner\'></div>') : 
@@ -42,13 +54,17 @@ function makeGrid() {
         }
       }
     }
+    // Append color picker and nonogramify buttons
     $('#grid').append('<div id="color-picker"><p>Color Picker</p><input id="grid-color" type="color"></div><button id="nonogramify"  onclick="nonogramify()">Create Nonogram</button>')
 }
 
+// Handle pixel clicks
 function handlePixel(e){
+	// Capture x and y coordinates of the selected pixel
     var pixel = $(e);
     var yCoord = pixel.attr('data-y');
     var xCoord = pixel.attr('data-x');
+    // If still making pixel art set background to selected color
     if (!nonogram){
         if(pixel.attr('data-isPixel') == 'true') {
             pixel.attr('data-isPixel', 'false');
@@ -63,6 +79,8 @@ function handlePixel(e){
             gridArr[yCoord][xCoord] = 1;
         }
     }
+    // If the nonogram game is active check to see if the selected tile is a pixel or not
+    // If it not a pixel remove the tile cover. If it is, mark as incorrect
     else {
         if(pixel.attr('data-isPixel') == 'true') {
             pixel.addClass('incorrect');
@@ -78,8 +96,12 @@ function handlePixel(e){
     }
 }
 
+// Cover pixel art with tiles and add logic for nonogram game
 function nonogramify() {
+	$('#nonogramify').remove();
+    $('#color-picker').remove();
     nonogram = true;
+    tilesToEliminate = countPixels(gridArr);
     var tile = $('.pixel')
     var colVal = 0;
     var rowVal = 0;
@@ -110,12 +132,9 @@ function nonogramify() {
             }
         }
     }
-    tilesToEliminate = countPixels(gridArr);
-    $('#nonogramify').remove();
-    $('#color-picker').remove();
 }
 
-
+// Count the number of missing pixels that the user has to find to win
 function countPixels(grid) {
 	var total = 0;
 	grid.forEach(function(arrElem) {

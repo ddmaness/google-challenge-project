@@ -1,3 +1,9 @@
+/*
+=================================
+Base Rules
+=================================
+*/
+
 img {
 max-width:100%;
 }
@@ -58,6 +64,23 @@ p {
 	margin-bottom: 4px;
 }
 
+ul { 
+    text-align: center;
+    -webkit-padding-start: 0;
+    list-style-type: none;
+}
+
+/*
+=================================
+Grid Module
+=================================
+*/
+
+#grid {
+	display: flex;
+	flex-direction:column;
+}
+
 *[id^='column-'] ul {
 	height: 100%;
 	display: flex;
@@ -74,34 +97,9 @@ p {
     padding-right: 8px;
 }
 
-ul { 
-    text-align: center;
-    -webkit-padding-start: 0;
-    list-style-type: none;
-}
-
-#grid {
-	display: flex;
-	flex-direction:column;
-}
-
-#nonogramify {
-	margin-bottom: 24px;
-	margin-left: 206px;
-	width: 200px;
-}
-
-#nonogramify:active {
-	margin-left: 200px !important;
-}
-
 *[id*='-row'],
 #y-numbers{
 display:flex;
-}
-
-#corner {
-    min-width:200px;
 }
 
 *[id^='row-'] {
@@ -117,6 +115,21 @@ display:flex;
 
 *[id^='column-']{
     width:40px;
+}
+
+#nonogramify {
+	margin-bottom: 24px;
+	margin-left: 206px;
+	width: 200px;
+}
+
+#nonogramify:active {
+	margin-left: 200px !important;
+}
+
+
+#corner {
+    min-width:200px;
 }
 
 .pixel {
@@ -185,6 +198,12 @@ display:flex;
 	margin-left: 6px;
 }
 
+/*
+=================================
+Win Text Module
+=================================
+*/
+
 #win {
 	-webkit-text-shadow: -2px -2px 0 #f7f7f7 ,0 -2px 0 #f7f7f7, -2px 0px 0 #f7f7f7, 2px 2px 0 #f7f7f7, 0px 2px 0 #f7f7f7 ,0 2px 0 #f7f7f7;
 	-moz-text-shadow: -2px -2px 0 #f7f7f7 ,0 -2px 0 #f7f7f7, -2px 0px 0 #f7f7f7, 2px 2px 0 #f7f7f7, 0px 2px 0 #f7f7f7 ,0 2px 0 #f7f7f7;
@@ -206,5 +225,5 @@ display:flex;
 	100% {opacity: 0}
 }
 .win-is-visible {
-		animation: scroll 5s, fadeout 5s;
+	animation: scroll 5s, fadeout 5s;
 }
