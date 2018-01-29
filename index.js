@@ -9,6 +9,7 @@ function makeGrid() {
     gridArr = [];
     tilesFound = 0;
     nonogram = false;
+   	$('#win').removeClass('win-is-visible');
     if (height > 30) {
         height = 30;
     }
@@ -66,11 +67,12 @@ function handlePixel(e){
         if(pixel.attr('data-isPixel') == 'true') {
             pixel.addClass('incorrect');
         }
-        else {
+        else if (pixel.hasClass('tile')) {
         	tilesFound++;
             pixel.removeClass('tile');
          	if(tilesToEliminate === tilesFound) {
         		$('.pixel').removeClass('tile');
+        		$('#win').addClass('win-is-visible');
         	}
         }
     }
