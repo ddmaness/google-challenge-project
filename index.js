@@ -41,7 +41,7 @@ function makeGrid() {
         }
       }
     }
-    $('body').append('<button id="nonogramify"  onclick="nonogramify()">Create Nonogram</button>')
+    $('#grid').append('<button id="nonogramify"  onclick="nonogramify()">Create Nonogram</button>')
 }
 
 function handlePixel(e){
