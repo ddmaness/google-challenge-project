@@ -41,7 +41,7 @@ function makeGrid() {
         }
       }
     }
-    $('#grid').append('<button id="nonogramify"  onclick="nonogramify()">Create Nonogram</button>')
+    $('#grid').append('<div id="color-picker"><p>Color Picker</p><input id="grid-color" type="color"></div><button id="nonogramify"  onclick="nonogramify()">Create Nonogram</button>')
 }
 
 function handlePixel(e){
@@ -110,6 +110,7 @@ function nonogramify() {
     }
     tilesToEliminate = countPixels(gridArr);
     $('#nonogramify').remove();
+    $('#color-picker').remove();
 }
 
 
